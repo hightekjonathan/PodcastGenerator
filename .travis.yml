@@ -1,0 +1,25 @@
+language: php
+php:
+  - '7.0'
+  - '7.1'
+  - '7.2'
+  - nightly
+
+before_install:
+  - mysql -e 'CREATE DATABASE travis'
+
+install:
+  - phpenv config-rm xdebug.ini
+  - cp .env.testing .env
+  - composer self-update
+  - composer install --no-interaction
+  - php artisan key:generate
+  - php artisan migrate
+  - php artisan db:seed
+
+script:
+  - vendor/bin/phpunit
+
+notifications:
+  slack:
+    secure: CEQBA9e61N16POtNkvmXJvWrxAjEVsNUKfNIOV//834uJghuyR7AJsICfkyWKJV1Wz04Ue0ecPsffmTajw1AGnBqz5M/GFfy/CskNscAFtX4JXJJ0XbzsIW1rG6DH7Zwc9hgGTWfdKXcaiDwyK2kLQe4mIcC2aeAJlhxdAZvonqYo1tZ8BlD0a3Yeljq7zSMfj2Hr1qFlr8tLIJlGDRYMjb7I482HjAK92fZHt9cwturJsI4C0IQ9wkeqT0NP9+eXfOLlIEvla2Zo1iEjk1KcbzHTL1wxwwE4It+ht4n0Q9fKcl8lJsYjdO0XiTQi0zGCsqmbXbfgmeUL8exsbOP79Z5H7o0vkpfI/cRq/gf63IkQo3rLaLEl5uisZC4nUDZMwzW8VlGdHEy8bSmMDckGyVx2La7BUg4a6Tm3OcIT2Hsn3NQbiSCy0W3e0Q8ToMv9dXBJNV24UhWNL3GAhuMeFjNFNZf558XhPZz6AeIt2A1gGm9Gn3zkY9XsrnyUYqAUkkQm5+Q+5S80WVjHyF+j14lnV6IauOdIW8/GYtSvCZzglOaBjIzVYcfYxHjOzJsN0yUtH/spz6Yx5D9Rs2STFi8tyrXAab6t0TNB5mNE0txXHe/K6RIESx6adgCj9lbx/HhXLNXsU/7mZs+GQNTS0n/0J8diREuLlP5SFE4E/U=
