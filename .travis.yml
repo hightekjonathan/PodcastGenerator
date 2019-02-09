@@ -5,9 +5,6 @@ php:
   - '7.2'
   - nightly
 
-before_install:
-  - mysql -e 'CREATE DATABASE travis'
-
 install:
   - phpenv config-rm xdebug.ini
   - cp .env.testing .env

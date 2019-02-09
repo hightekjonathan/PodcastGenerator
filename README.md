@@ -1,4 +1,5 @@
 # Podcast Generator
+[![Build Status](https://travis-ci.com/hightekjonathan/PodcastGenerator.svg?branch=3.0-dev)](https://travis-ci.com/hightekjonathan/PodcastGenerator)
 
 Podcast Generator (PG) is an open source Content Management System written in PHP 
 and specifically designed for podcast publishing. It provides the user with the tools 
