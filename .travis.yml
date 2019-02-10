@@ -2,10 +2,10 @@ language: php
 php:
   - '7.1'
   - '7.2'
+  - '7.3'
   - nightly
 
 install:
-  - phpenv config-rm xdebug.ini
   - cp .env.testing .env
   - composer self-update
   - composer install --no-interaction
